@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AgendaRouteImport } from './routes/agenda'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
@@ -20,9 +21,12 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as OrganizadorRouteImport } from './routes/organizador'
 import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as AdminEventosRouteImport } from './routes/admin.eventos'
 import { Route as FeirinhasIndexRouteImport } from './routes/feirinhas.index'
 import { Route as FeirinhasIdRouteImport } from './routes/feirinhas.$id'
+import { Route as OrganizadorAvaliacoesRouteImport } from './routes/organizador.avaliacoes'
 import { Route as OrganizadorEventosRouteImport } from './routes/organizador.eventos'
+import { Route as OrganizadorFeedbackRouteImport } from './routes/organizador.feedback'
 import { Route as OrganizadorEventosIndexRouteImport } from './routes/organizador.eventos.index'
 import { Route as OrganizadorEventosNovoRouteImport } from './routes/organizador.eventos.novo'
 import { Route as OrganizadorEventosIdEditarRouteImport } from './routes/organizador.eventos.$id.editar'
@@ -30,6 +34,11 @@ import { Route as OrganizadorEventosIdEditarRouteImport } from './routes/organiz
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgendaRoute = AgendaRouteImport.update({
@@ -82,6 +91,11 @@ const PerfilRoute = PerfilRouteImport.update({
   path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminEventosRoute = AdminEventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => AdminRoute,
+} as any)
 const FeirinhasIndexRoute = FeirinhasIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -92,9 +106,19 @@ const FeirinhasIdRoute = FeirinhasIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => FeirinhasRoute,
 } as any)
+const OrganizadorAvaliacoesRoute = OrganizadorAvaliacoesRouteImport.update({
+  id: '/avaliacoes',
+  path: '/avaliacoes',
+  getParentRoute: () => OrganizadorRoute,
+} as any)
 const OrganizadorEventosRoute = OrganizadorEventosRouteImport.update({
   id: '/eventos',
   path: '/eventos',
+  getParentRoute: () => OrganizadorRoute,
+} as any)
+const OrganizadorFeedbackRoute = OrganizadorFeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
   getParentRoute: () => OrganizadorRoute,
 } as any)
 const OrganizadorEventosIndexRoute = OrganizadorEventosIndexRouteImport.update({
@@ -116,6 +140,7 @@ const OrganizadorEventosIdEditarRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/agenda': typeof AgendaRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
@@ -126,8 +151,11 @@ export interface FileRoutesByFullPath {
   '/mapa': typeof MapaRoute
   '/organizador': typeof OrganizadorRouteWithChildren
   '/perfil': typeof PerfilRoute
+  '/admin/eventos': typeof AdminEventosRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
+  '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
   '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
+  '/organizador/feedback': typeof OrganizadorFeedbackRoute
   '/feirinhas/': typeof FeirinhasIndexRoute
   '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
   '/organizador/eventos/': typeof OrganizadorEventosIndexRoute
@@ -135,6 +163,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/agenda': typeof AgendaRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
@@ -144,7 +173,10 @@ export interface FileRoutesByTo {
   '/mapa': typeof MapaRoute
   '/organizador': typeof OrganizadorRouteWithChildren
   '/perfil': typeof PerfilRoute
+  '/admin/eventos': typeof AdminEventosRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
+  '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
+  '/organizador/feedback': typeof OrganizadorFeedbackRoute
   '/feirinhas': typeof FeirinhasIndexRoute
   '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
   '/organizador/eventos': typeof OrganizadorEventosIndexRoute
@@ -153,6 +185,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/agenda': typeof AgendaRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
@@ -163,8 +196,11 @@ export interface FileRoutesById {
   '/mapa': typeof MapaRoute
   '/organizador': typeof OrganizadorRouteWithChildren
   '/perfil': typeof PerfilRoute
+  '/admin/eventos': typeof AdminEventosRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
+  '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
   '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
+  '/organizador/feedback': typeof OrganizadorFeedbackRoute
   '/feirinhas/': typeof FeirinhasIndexRoute
   '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
   '/organizador/eventos/': typeof OrganizadorEventosIndexRoute
@@ -174,6 +210,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/agenda'
     | '/cadastro'
     | '/como-funciona'
@@ -184,8 +221,11 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/organizador'
     | '/perfil'
+    | '/admin/eventos'
     | '/feirinhas/$id'
+    | '/organizador/avaliacoes'
     | '/organizador/eventos'
+    | '/organizador/feedback'
     | '/feirinhas/'
     | '/organizador/eventos/novo'
     | '/organizador/eventos/'
@@ -193,6 +233,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin'
     | '/agenda'
     | '/cadastro'
     | '/como-funciona'
@@ -202,7 +243,10 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/organizador'
     | '/perfil'
+    | '/admin/eventos'
     | '/feirinhas/$id'
+    | '/organizador/avaliacoes'
+    | '/organizador/feedback'
     | '/feirinhas'
     | '/organizador/eventos/novo'
     | '/organizador/eventos'
@@ -210,6 +254,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/agenda'
     | '/cadastro'
     | '/como-funciona'
@@ -220,8 +265,11 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/organizador'
     | '/perfil'
+    | '/admin/eventos'
     | '/feirinhas/$id'
+    | '/organizador/avaliacoes'
     | '/organizador/eventos'
+    | '/organizador/feedback'
     | '/feirinhas/'
     | '/organizador/eventos/novo'
     | '/organizador/eventos/'
@@ -230,6 +278,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AgendaRoute: typeof AgendaRoute
   CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
@@ -249,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/agenda': {
@@ -321,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/eventos': {
+      id: '/admin/eventos'
+      path: '/eventos'
+      fullPath: '/admin/eventos'
+      preLoaderRoute: typeof AdminEventosRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/feirinhas/': {
       id: '/feirinhas/'
       path: '/'
@@ -335,11 +398,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeirinhasIdRouteImport
       parentRoute: typeof FeirinhasRoute
     }
+    '/organizador/avaliacoes': {
+      id: '/organizador/avaliacoes'
+      path: '/avaliacoes'
+      fullPath: '/organizador/avaliacoes'
+      preLoaderRoute: typeof OrganizadorAvaliacoesRouteImport
+      parentRoute: typeof OrganizadorRoute
+    }
     '/organizador/eventos': {
       id: '/organizador/eventos'
       path: '/eventos'
       fullPath: '/organizador/eventos'
       preLoaderRoute: typeof OrganizadorEventosRouteImport
+      parentRoute: typeof OrganizadorRoute
+    }
+    '/organizador/feedback': {
+      id: '/organizador/feedback'
+      path: '/feedback'
+      fullPath: '/organizador/feedback'
+      preLoaderRoute: typeof OrganizadorFeedbackRouteImport
       parentRoute: typeof OrganizadorRoute
     }
     '/organizador/eventos/': {
@@ -365,6 +442,16 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface AdminRouteChildren {
+  AdminEventosRoute: typeof AdminEventosRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminEventosRoute: AdminEventosRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface FeirinhasRouteChildren {
   FeirinhasIdRoute: typeof FeirinhasIdRoute
@@ -396,11 +483,15 @@ const OrganizadorEventosRouteWithChildren =
   OrganizadorEventosRoute._addFileChildren(OrganizadorEventosRouteChildren)
 
 interface OrganizadorRouteChildren {
+  OrganizadorAvaliacoesRoute: typeof OrganizadorAvaliacoesRoute
   OrganizadorEventosRoute: typeof OrganizadorEventosRouteWithChildren
+  OrganizadorFeedbackRoute: typeof OrganizadorFeedbackRoute
 }
 
 const OrganizadorRouteChildren: OrganizadorRouteChildren = {
+  OrganizadorAvaliacoesRoute: OrganizadorAvaliacoesRoute,
   OrganizadorEventosRoute: OrganizadorEventosRouteWithChildren,
+  OrganizadorFeedbackRoute: OrganizadorFeedbackRoute,
 }
 
 const OrganizadorRouteWithChildren = OrganizadorRoute._addFileChildren(
@@ -409,6 +500,7 @@ const OrganizadorRouteWithChildren = OrganizadorRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   AgendaRoute: AgendaRoute,
   CadastroRoute: CadastroRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
