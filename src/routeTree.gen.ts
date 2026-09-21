@@ -21,7 +21,10 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as OrganizadorRouteImport } from './routes/organizador'
 import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as AdminAtividadesRouteImport } from './routes/admin.atividades'
 import { Route as AdminEventosRouteImport } from './routes/admin.eventos'
+import { Route as AdminModeracaoRouteImport } from './routes/admin.moderacao'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as FeirinhasIndexRouteImport } from './routes/feirinhas.index'
 import { Route as FeirinhasIdRouteImport } from './routes/feirinhas.$id'
 import { Route as OrganizadorAvaliacoesRouteImport } from './routes/organizador.avaliacoes'
@@ -91,9 +94,24 @@ const PerfilRoute = PerfilRouteImport.update({
   path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAtividadesRoute = AdminAtividadesRouteImport.update({
+  id: '/atividades',
+  path: '/atividades',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminEventosRoute = AdminEventosRouteImport.update({
   id: '/eventos',
   path: '/eventos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminModeracaoRoute = AdminModeracaoRouteImport.update({
+  id: '/moderacao',
+  path: '/moderacao',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
   getParentRoute: () => AdminRoute,
 } as any)
 const FeirinhasIndexRoute = FeirinhasIndexRouteImport.update({
@@ -151,7 +169,10 @@ export interface FileRoutesByFullPath {
   '/mapa': typeof MapaRoute
   '/organizador': typeof OrganizadorRouteWithChildren
   '/perfil': typeof PerfilRoute
+  '/admin/atividades': typeof AdminAtividadesRoute
   '/admin/eventos': typeof AdminEventosRoute
+  '/admin/moderacao': typeof AdminModeracaoRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
   '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
@@ -173,7 +194,10 @@ export interface FileRoutesByTo {
   '/mapa': typeof MapaRoute
   '/organizador': typeof OrganizadorRouteWithChildren
   '/perfil': typeof PerfilRoute
+  '/admin/atividades': typeof AdminAtividadesRoute
   '/admin/eventos': typeof AdminEventosRoute
+  '/admin/moderacao': typeof AdminModeracaoRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
   '/organizador/feedback': typeof OrganizadorFeedbackRoute
@@ -196,7 +220,10 @@ export interface FileRoutesById {
   '/mapa': typeof MapaRoute
   '/organizador': typeof OrganizadorRouteWithChildren
   '/perfil': typeof PerfilRoute
+  '/admin/atividades': typeof AdminAtividadesRoute
   '/admin/eventos': typeof AdminEventosRoute
+  '/admin/moderacao': typeof AdminModeracaoRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
   '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
@@ -221,7 +248,10 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/organizador'
     | '/perfil'
+    | '/admin/atividades'
     | '/admin/eventos'
+    | '/admin/moderacao'
+    | '/admin/usuarios'
     | '/feirinhas/$id'
     | '/organizador/avaliacoes'
     | '/organizador/eventos'
@@ -243,7 +273,10 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/organizador'
     | '/perfil'
+    | '/admin/atividades'
     | '/admin/eventos'
+    | '/admin/moderacao'
+    | '/admin/usuarios'
     | '/feirinhas/$id'
     | '/organizador/avaliacoes'
     | '/organizador/feedback'
@@ -265,7 +298,10 @@ export interface FileRouteTypes {
     | '/mapa'
     | '/organizador'
     | '/perfil'
+    | '/admin/atividades'
     | '/admin/eventos'
+    | '/admin/moderacao'
+    | '/admin/usuarios'
     | '/feirinhas/$id'
     | '/organizador/avaliacoes'
     | '/organizador/eventos'
@@ -377,11 +413,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/atividades': {
+      id: '/admin/atividades'
+      path: '/atividades'
+      fullPath: '/admin/atividades'
+      preLoaderRoute: typeof AdminAtividadesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/eventos': {
       id: '/admin/eventos'
       path: '/eventos'
       fullPath: '/admin/eventos'
       preLoaderRoute: typeof AdminEventosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/moderacao': {
+      id: '/admin/moderacao'
+      path: '/moderacao'
+      fullPath: '/admin/moderacao'
+      preLoaderRoute: typeof AdminModeracaoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
       parentRoute: typeof AdminRoute
     }
     '/feirinhas/': {
@@ -444,11 +501,17 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAtividadesRoute: typeof AdminAtividadesRoute
   AdminEventosRoute: typeof AdminEventosRoute
+  AdminModeracaoRoute: typeof AdminModeracaoRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAtividadesRoute: AdminAtividadesRoute,
   AdminEventosRoute: AdminEventosRoute,
+  AdminModeracaoRoute: AdminModeracaoRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
