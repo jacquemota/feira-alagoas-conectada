@@ -24,6 +24,8 @@ import { Route as FeirinhasIndexRouteImport } from './routes/feirinhas.index'
 import { Route as FeirinhasIdRouteImport } from './routes/feirinhas.$id'
 import { Route as OrganizadorEventosRouteImport } from './routes/organizador.eventos'
 import { Route as OrganizadorEventosIndexRouteImport } from './routes/organizador.eventos.index'
+import { Route as OrganizadorEventosNovoRouteImport } from './routes/organizador.eventos.novo'
+import { Route as OrganizadorEventosIdEditarRouteImport } from './routes/organizador.eventos.$id.editar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +102,17 @@ const OrganizadorEventosIndexRoute = OrganizadorEventosIndexRouteImport.update({
   path: '/',
   getParentRoute: () => OrganizadorEventosRoute,
 } as any)
+const OrganizadorEventosNovoRoute = OrganizadorEventosNovoRouteImport.update({
+  id: '/novo',
+  path: '/novo',
+  getParentRoute: () => OrganizadorEventosRoute,
+} as any)
+const OrganizadorEventosIdEditarRoute =
+  OrganizadorEventosIdEditarRouteImport.update({
+    id: '/$id/editar',
+    path: '/$id/editar',
+    getParentRoute: () => OrganizadorEventosRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -116,7 +129,9 @@ export interface FileRoutesByFullPath {
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
   '/feirinhas/': typeof FeirinhasIndexRoute
+  '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
   '/organizador/eventos/': typeof OrganizadorEventosIndexRoute
+  '/organizador/eventos/$id/editar': typeof OrganizadorEventosIdEditarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -131,7 +146,9 @@ export interface FileRoutesByTo {
   '/perfil': typeof PerfilRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas': typeof FeirinhasIndexRoute
+  '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
   '/organizador/eventos': typeof OrganizadorEventosIndexRoute
+  '/organizador/eventos/$id/editar': typeof OrganizadorEventosIdEditarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,7 +166,9 @@ export interface FileRoutesById {
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
   '/feirinhas/': typeof FeirinhasIndexRoute
+  '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
   '/organizador/eventos/': typeof OrganizadorEventosIndexRoute
+  '/organizador/eventos/$id/editar': typeof OrganizadorEventosIdEditarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,7 +187,9 @@ export interface FileRouteTypes {
     | '/feirinhas/$id'
     | '/organizador/eventos'
     | '/feirinhas/'
+    | '/organizador/eventos/novo'
     | '/organizador/eventos/'
+    | '/organizador/eventos/$id/editar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -183,7 +204,9 @@ export interface FileRouteTypes {
     | '/perfil'
     | '/feirinhas/$id'
     | '/feirinhas'
+    | '/organizador/eventos/novo'
     | '/organizador/eventos'
+    | '/organizador/eventos/$id/editar'
   id:
     | '__root__'
     | '/'
@@ -200,7 +223,9 @@ export interface FileRouteTypes {
     | '/feirinhas/$id'
     | '/organizador/eventos'
     | '/feirinhas/'
+    | '/organizador/eventos/novo'
     | '/organizador/eventos/'
+    | '/organizador/eventos/$id/editar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -324,6 +349,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrganizadorEventosIndexRouteImport
       parentRoute: typeof OrganizadorEventosRoute
     }
+    '/organizador/eventos/novo': {
+      id: '/organizador/eventos/novo'
+      path: '/novo'
+      fullPath: '/organizador/eventos/novo'
+      preLoaderRoute: typeof OrganizadorEventosNovoRouteImport
+      parentRoute: typeof OrganizadorEventosRoute
+    }
+    '/organizador/eventos/$id/editar': {
+      id: '/organizador/eventos/$id/editar'
+      path: '/$id/editar'
+      fullPath: '/organizador/eventos/$id/editar'
+      preLoaderRoute: typeof OrganizadorEventosIdEditarRouteImport
+      parentRoute: typeof OrganizadorEventosRoute
+    }
   }
 }
 
@@ -342,11 +381,15 @@ const FeirinhasRouteWithChildren = FeirinhasRoute._addFileChildren(
 )
 
 interface OrganizadorEventosRouteChildren {
+  OrganizadorEventosNovoRoute: typeof OrganizadorEventosNovoRoute
   OrganizadorEventosIndexRoute: typeof OrganizadorEventosIndexRoute
+  OrganizadorEventosIdEditarRoute: typeof OrganizadorEventosIdEditarRoute
 }
 
 const OrganizadorEventosRouteChildren: OrganizadorEventosRouteChildren = {
+  OrganizadorEventosNovoRoute: OrganizadorEventosNovoRoute,
   OrganizadorEventosIndexRoute: OrganizadorEventosIndexRoute,
+  OrganizadorEventosIdEditarRoute: OrganizadorEventosIdEditarRoute,
 }
 
 const OrganizadorEventosRouteWithChildren =
