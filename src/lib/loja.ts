@@ -82,7 +82,7 @@ const registrar = (e: Estado, tipo: string, descricao: string, autor?: string): 
     tipo,
     descricao,
     criadoEm: new Date().toISOString(),
-    autor,
+    ...(autor ? { autor } : {}),
   };
   return { ...e, atividades: [atividade, ...e.atividades].slice(0, 120) };
 };
@@ -126,8 +126,8 @@ export const cadastrar = (dados: {
     email: dados.email,
     senha: dados.senha,
     perfil: dados.perfil,
-    municipio: dados.municipio,
-    telefone: dados.telefone,
+    ...(dados.municipio ? { municipio: dados.municipio } : {}),
+    ...(dados.telefone ? { telefone: dados.telefone } : {}),
     interesses: [],
     notificacoes: { email: true, novidades: true, lembretes: false },
     status: "ativo",
@@ -220,7 +220,12 @@ export const encerrarPatrocinio = (eventoId: string, autor?: string) =>
       {
         ...e,
         eventos: e.eventos.map((x) =>
-          x.id === eventoId ? { ...x, patrocinado: false, patrocinioAte: undefined } : x,
+          x.id === eventoId
+            ? (() => {
+                const { patrocinioAte: _patrocinioAte, ...restante } = x;
+                return { ...restante, patrocinado: false };
+              })()
+            : x,
         ),
       },
       "patrocinio",
