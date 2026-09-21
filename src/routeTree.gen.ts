@@ -10,33 +10,285 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as CreditosRouteImport } from './routes/creditos'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as FeirinhasRouteImport } from './routes/feirinhas'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as OrganizadorRouteImport } from './routes/organizador'
+import { Route as PerfilRouteImport } from './routes/perfil'
+import { Route as AdminEventosRouteImport } from './routes/admin.eventos'
+import { Route as FeirinhasIndexRouteImport } from './routes/feirinhas.index'
+import { Route as FeirinhasIdRouteImport } from './routes/feirinhas.$id'
+import { Route as OrganizadorAvaliacoesRouteImport } from './routes/organizador.avaliacoes'
+import { Route as OrganizadorEventosRouteImport } from './routes/organizador.eventos'
+import { Route as OrganizadorFeedbackRouteImport } from './routes/organizador.feedback'
+import { Route as OrganizadorEventosIndexRouteImport } from './routes/organizador.eventos.index'
+import { Route as OrganizadorEventosNovoRouteImport } from './routes/organizador.eventos.novo'
+import { Route as OrganizadorEventosIdEditarRouteImport } from './routes/organizador.eventos.$id.editar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
+  id: '/como-funciona',
+  path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreditosRoute = CreditosRouteImport.update({
+  id: '/creditos',
+  path: '/creditos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeirinhasRoute = FeirinhasRouteImport.update({
+  id: '/feirinhas',
+  path: '/feirinhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizadorRoute = OrganizadorRouteImport.update({
+  id: '/organizador',
+  path: '/organizador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminEventosRoute = AdminEventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const FeirinhasIndexRoute = FeirinhasIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => FeirinhasRoute,
+} as any)
+const FeirinhasIdRoute = FeirinhasIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => FeirinhasRoute,
+} as any)
+const OrganizadorAvaliacoesRoute = OrganizadorAvaliacoesRouteImport.update({
+  id: '/avaliacoes',
+  path: '/avaliacoes',
+  getParentRoute: () => OrganizadorRoute,
+} as any)
+const OrganizadorEventosRoute = OrganizadorEventosRouteImport.update({
+  id: '/eventos',
+  path: '/eventos',
+  getParentRoute: () => OrganizadorRoute,
+} as any)
+const OrganizadorFeedbackRoute = OrganizadorFeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => OrganizadorRoute,
+} as any)
+const OrganizadorEventosIndexRoute = OrganizadorEventosIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OrganizadorEventosRoute,
+} as any)
+const OrganizadorEventosNovoRoute = OrganizadorEventosNovoRouteImport.update({
+  id: '/novo',
+  path: '/novo',
+  getParentRoute: () => OrganizadorEventosRoute,
+} as any)
+const OrganizadorEventosIdEditarRoute =
+  OrganizadorEventosIdEditarRouteImport.update({
+    id: '/$id/editar',
+    path: '/$id/editar',
+    getParentRoute: () => OrganizadorEventosRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/agenda': typeof AgendaRoute
+  '/cadastro': typeof CadastroRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/creditos': typeof CreditosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/feirinhas': typeof FeirinhasRouteWithChildren
+  '/login': typeof LoginRoute
+  '/mapa': typeof MapaRoute
+  '/organizador': typeof OrganizadorRouteWithChildren
+  '/perfil': typeof PerfilRoute
+  '/admin/eventos': typeof AdminEventosRoute
+  '/feirinhas/$id': typeof FeirinhasIdRoute
+  '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
+  '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
+  '/organizador/feedback': typeof OrganizadorFeedbackRoute
+  '/feirinhas/': typeof FeirinhasIndexRoute
+  '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
+  '/organizador/eventos/': typeof OrganizadorEventosIndexRoute
+  '/organizador/eventos/$id/editar': typeof OrganizadorEventosIdEditarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/agenda': typeof AgendaRoute
+  '/cadastro': typeof CadastroRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/creditos': typeof CreditosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mapa': typeof MapaRoute
+  '/organizador': typeof OrganizadorRouteWithChildren
+  '/perfil': typeof PerfilRoute
+  '/admin/eventos': typeof AdminEventosRoute
+  '/feirinhas/$id': typeof FeirinhasIdRoute
+  '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
+  '/organizador/feedback': typeof OrganizadorFeedbackRoute
+  '/feirinhas': typeof FeirinhasIndexRoute
+  '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
+  '/organizador/eventos': typeof OrganizadorEventosIndexRoute
+  '/organizador/eventos/$id/editar': typeof OrganizadorEventosIdEditarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/agenda': typeof AgendaRoute
+  '/cadastro': typeof CadastroRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/creditos': typeof CreditosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/feirinhas': typeof FeirinhasRouteWithChildren
+  '/login': typeof LoginRoute
+  '/mapa': typeof MapaRoute
+  '/organizador': typeof OrganizadorRouteWithChildren
+  '/perfil': typeof PerfilRoute
+  '/admin/eventos': typeof AdminEventosRoute
+  '/feirinhas/$id': typeof FeirinhasIdRoute
+  '/organizador/avaliacoes': typeof OrganizadorAvaliacoesRoute
+  '/organizador/eventos': typeof OrganizadorEventosRouteWithChildren
+  '/organizador/feedback': typeof OrganizadorFeedbackRoute
+  '/feirinhas/': typeof FeirinhasIndexRoute
+  '/organizador/eventos/novo': typeof OrganizadorEventosNovoRoute
+  '/organizador/eventos/': typeof OrganizadorEventosIndexRoute
+  '/organizador/eventos/$id/editar': typeof OrganizadorEventosIdEditarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/agenda'
+    | '/cadastro'
+    | '/como-funciona'
+    | '/creditos'
+    | '/favoritos'
+    | '/feirinhas'
+    | '/login'
+    | '/mapa'
+    | '/organizador'
+    | '/perfil'
+    | '/admin/eventos'
+    | '/feirinhas/$id'
+    | '/organizador/avaliacoes'
+    | '/organizador/eventos'
+    | '/organizador/feedback'
+    | '/feirinhas/'
+    | '/organizador/eventos/novo'
+    | '/organizador/eventos/'
+    | '/organizador/eventos/$id/editar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/agenda'
+    | '/cadastro'
+    | '/como-funciona'
+    | '/creditos'
+    | '/favoritos'
+    | '/login'
+    | '/mapa'
+    | '/organizador'
+    | '/perfil'
+    | '/admin/eventos'
+    | '/feirinhas/$id'
+    | '/organizador/avaliacoes'
+    | '/organizador/feedback'
+    | '/feirinhas'
+    | '/organizador/eventos/novo'
+    | '/organizador/eventos'
+    | '/organizador/eventos/$id/editar'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/agenda'
+    | '/cadastro'
+    | '/como-funciona'
+    | '/creditos'
+    | '/favoritos'
+    | '/feirinhas'
+    | '/login'
+    | '/mapa'
+    | '/organizador'
+    | '/perfil'
+    | '/admin/eventos'
+    | '/feirinhas/$id'
+    | '/organizador/avaliacoes'
+    | '/organizador/eventos'
+    | '/organizador/feedback'
+    | '/feirinhas/'
+    | '/organizador/eventos/novo'
+    | '/organizador/eventos/'
+    | '/organizador/eventos/$id/editar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AgendaRoute: typeof AgendaRoute
+  CadastroRoute: typeof CadastroRoute
+  ComoFuncionaRoute: typeof ComoFuncionaRoute
+  CreditosRoute: typeof CreditosRoute
+  FavoritosRoute: typeof FavoritosRoute
+  FeirinhasRoute: typeof FeirinhasRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  MapaRoute: typeof MapaRoute
+  OrganizadorRoute: typeof OrganizadorRouteWithChildren
+  PerfilRoute: typeof PerfilRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +300,217 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/como-funciona': {
+      id: '/como-funciona'
+      path: '/como-funciona'
+      fullPath: '/como-funciona'
+      preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creditos': {
+      id: '/creditos'
+      path: '/creditos'
+      fullPath: '/creditos'
+      preLoaderRoute: typeof CreditosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feirinhas': {
+      id: '/feirinhas'
+      path: '/feirinhas'
+      fullPath: '/feirinhas'
+      preLoaderRoute: typeof FeirinhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organizador': {
+      id: '/organizador'
+      path: '/organizador'
+      fullPath: '/organizador'
+      preLoaderRoute: typeof OrganizadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/eventos': {
+      id: '/admin/eventos'
+      path: '/eventos'
+      fullPath: '/admin/eventos'
+      preLoaderRoute: typeof AdminEventosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/feirinhas/': {
+      id: '/feirinhas/'
+      path: '/'
+      fullPath: '/feirinhas/'
+      preLoaderRoute: typeof FeirinhasIndexRouteImport
+      parentRoute: typeof FeirinhasRoute
+    }
+    '/feirinhas/$id': {
+      id: '/feirinhas/$id'
+      path: '/$id'
+      fullPath: '/feirinhas/$id'
+      preLoaderRoute: typeof FeirinhasIdRouteImport
+      parentRoute: typeof FeirinhasRoute
+    }
+    '/organizador/avaliacoes': {
+      id: '/organizador/avaliacoes'
+      path: '/avaliacoes'
+      fullPath: '/organizador/avaliacoes'
+      preLoaderRoute: typeof OrganizadorAvaliacoesRouteImport
+      parentRoute: typeof OrganizadorRoute
+    }
+    '/organizador/eventos': {
+      id: '/organizador/eventos'
+      path: '/eventos'
+      fullPath: '/organizador/eventos'
+      preLoaderRoute: typeof OrganizadorEventosRouteImport
+      parentRoute: typeof OrganizadorRoute
+    }
+    '/organizador/feedback': {
+      id: '/organizador/feedback'
+      path: '/feedback'
+      fullPath: '/organizador/feedback'
+      preLoaderRoute: typeof OrganizadorFeedbackRouteImport
+      parentRoute: typeof OrganizadorRoute
+    }
+    '/organizador/eventos/': {
+      id: '/organizador/eventos/'
+      path: '/'
+      fullPath: '/organizador/eventos/'
+      preLoaderRoute: typeof OrganizadorEventosIndexRouteImport
+      parentRoute: typeof OrganizadorEventosRoute
+    }
+    '/organizador/eventos/novo': {
+      id: '/organizador/eventos/novo'
+      path: '/novo'
+      fullPath: '/organizador/eventos/novo'
+      preLoaderRoute: typeof OrganizadorEventosNovoRouteImport
+      parentRoute: typeof OrganizadorEventosRoute
+    }
+    '/organizador/eventos/$id/editar': {
+      id: '/organizador/eventos/$id/editar'
+      path: '/$id/editar'
+      fullPath: '/organizador/eventos/$id/editar'
+      preLoaderRoute: typeof OrganizadorEventosIdEditarRouteImport
+      parentRoute: typeof OrganizadorEventosRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminEventosRoute: typeof AdminEventosRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminEventosRoute: AdminEventosRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface FeirinhasRouteChildren {
+  FeirinhasIdRoute: typeof FeirinhasIdRoute
+  FeirinhasIndexRoute: typeof FeirinhasIndexRoute
+}
+
+const FeirinhasRouteChildren: FeirinhasRouteChildren = {
+  FeirinhasIdRoute: FeirinhasIdRoute,
+  FeirinhasIndexRoute: FeirinhasIndexRoute,
+}
+
+const FeirinhasRouteWithChildren = FeirinhasRoute._addFileChildren(
+  FeirinhasRouteChildren,
+)
+
+interface OrganizadorEventosRouteChildren {
+  OrganizadorEventosNovoRoute: typeof OrganizadorEventosNovoRoute
+  OrganizadorEventosIndexRoute: typeof OrganizadorEventosIndexRoute
+  OrganizadorEventosIdEditarRoute: typeof OrganizadorEventosIdEditarRoute
+}
+
+const OrganizadorEventosRouteChildren: OrganizadorEventosRouteChildren = {
+  OrganizadorEventosNovoRoute: OrganizadorEventosNovoRoute,
+  OrganizadorEventosIndexRoute: OrganizadorEventosIndexRoute,
+  OrganizadorEventosIdEditarRoute: OrganizadorEventosIdEditarRoute,
+}
+
+const OrganizadorEventosRouteWithChildren =
+  OrganizadorEventosRoute._addFileChildren(OrganizadorEventosRouteChildren)
+
+interface OrganizadorRouteChildren {
+  OrganizadorAvaliacoesRoute: typeof OrganizadorAvaliacoesRoute
+  OrganizadorEventosRoute: typeof OrganizadorEventosRouteWithChildren
+  OrganizadorFeedbackRoute: typeof OrganizadorFeedbackRoute
+}
+
+const OrganizadorRouteChildren: OrganizadorRouteChildren = {
+  OrganizadorAvaliacoesRoute: OrganizadorAvaliacoesRoute,
+  OrganizadorEventosRoute: OrganizadorEventosRouteWithChildren,
+  OrganizadorFeedbackRoute: OrganizadorFeedbackRoute,
+}
+
+const OrganizadorRouteWithChildren = OrganizadorRoute._addFileChildren(
+  OrganizadorRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AgendaRoute: AgendaRoute,
+  CadastroRoute: CadastroRoute,
+  ComoFuncionaRoute: ComoFuncionaRoute,
+  CreditosRoute: CreditosRoute,
+  FavoritosRoute: FavoritosRoute,
+  FeirinhasRoute: FeirinhasRouteWithChildren,
+  LoginRoute: LoginRoute,
+  MapaRoute: MapaRoute,
+  OrganizadorRoute: OrganizadorRouteWithChildren,
+  PerfilRoute: PerfilRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
