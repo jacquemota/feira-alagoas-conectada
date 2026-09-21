@@ -11,10 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as CreditosRouteImport } from './routes/creditos'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as FeirinhasRouteImport } from './routes/feirinhas'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapaRouteImport } from './routes/mapa'
+import { Route as PerfilRouteImport } from './routes/perfil'
 import { Route as FeirinhasIndexRouteImport } from './routes/feirinhas.index'
 import { Route as FeirinhasIdRouteImport } from './routes/feirinhas.$id'
 
@@ -28,6 +32,11 @@ const AgendaRoute = AgendaRouteImport.update({
   path: '/agenda',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
@@ -38,14 +47,29 @@ const CreditosRoute = CreditosRouteImport.update({
   path: '/creditos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeirinhasRoute = FeirinhasRouteImport.update({
   id: '/feirinhas',
   path: '/feirinhas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapaRoute = MapaRouteImport.update({
   id: '/mapa',
   path: '/mapa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilRoute = PerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeirinhasIndexRoute = FeirinhasIndexRouteImport.update({
@@ -62,19 +86,27 @@ const FeirinhasIdRoute = FeirinhasIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/creditos': typeof CreditosRoute
+  '/favoritos': typeof FavoritosRoute
   '/feirinhas': typeof FeirinhasRouteWithChildren
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/perfil': typeof PerfilRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas/': typeof FeirinhasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/creditos': typeof CreditosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/perfil': typeof PerfilRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas': typeof FeirinhasIndexRoute
 }
@@ -82,10 +114,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/creditos': typeof CreditosRoute
+  '/favoritos': typeof FavoritosRoute
   '/feirinhas': typeof FeirinhasRouteWithChildren
+  '/login': typeof LoginRoute
   '/mapa': typeof MapaRoute
+  '/perfil': typeof PerfilRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas/': typeof FeirinhasIndexRoute
 }
@@ -94,29 +130,41 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agenda'
+    | '/cadastro'
     | '/como-funciona'
     | '/creditos'
+    | '/favoritos'
     | '/feirinhas'
+    | '/login'
     | '/mapa'
+    | '/perfil'
     | '/feirinhas/$id'
     | '/feirinhas/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/agenda'
+    | '/cadastro'
     | '/como-funciona'
     | '/creditos'
+    | '/favoritos'
+    | '/login'
     | '/mapa'
+    | '/perfil'
     | '/feirinhas/$id'
     | '/feirinhas'
   id:
     | '__root__'
     | '/'
     | '/agenda'
+    | '/cadastro'
     | '/como-funciona'
     | '/creditos'
+    | '/favoritos'
     | '/feirinhas'
+    | '/login'
     | '/mapa'
+    | '/perfil'
     | '/feirinhas/$id'
     | '/feirinhas/'
   fileRoutesById: FileRoutesById
@@ -124,10 +172,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgendaRoute: typeof AgendaRoute
+  CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   CreditosRoute: typeof CreditosRoute
+  FavoritosRoute: typeof FavoritosRoute
   FeirinhasRoute: typeof FeirinhasRouteWithChildren
+  LoginRoute: typeof LoginRoute
   MapaRoute: typeof MapaRoute
+  PerfilRoute: typeof PerfilRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -146,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgendaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/como-funciona': {
       id: '/como-funciona'
       path: '/como-funciona'
@@ -160,6 +219,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreditosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/feirinhas': {
       id: '/feirinhas'
       path: '/feirinhas'
@@ -167,11 +233,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeirinhasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mapa': {
       id: '/mapa'
       path: '/mapa'
       fullPath: '/mapa'
       preLoaderRoute: typeof MapaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil': {
+      id: '/perfil'
+      path: '/perfil'
+      fullPath: '/perfil'
+      preLoaderRoute: typeof PerfilRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feirinhas/': {
@@ -208,10 +288,14 @@ const FeirinhasRouteWithChildren = FeirinhasRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgendaRoute: AgendaRoute,
+  CadastroRoute: CadastroRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   CreditosRoute: CreditosRoute,
+  FavoritosRoute: FavoritosRoute,
   FeirinhasRoute: FeirinhasRouteWithChildren,
+  LoginRoute: LoginRoute,
   MapaRoute: MapaRoute,
+  PerfilRoute: PerfilRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
