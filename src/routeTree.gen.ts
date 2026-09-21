@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as CreditosRouteImport } from './routes/creditos'
 import { Route as FeirinhasRouteImport } from './routes/feirinhas'
+import { Route as MapaRouteImport } from './routes/mapa'
 import { Route as FeirinhasIndexRouteImport } from './routes/feirinhas.index'
 import { Route as FeirinhasIdRouteImport } from './routes/feirinhas.$id'
 
@@ -25,9 +28,24 @@ const AgendaRoute = AgendaRouteImport.update({
   path: '/agenda',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
+  id: '/como-funciona',
+  path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreditosRoute = CreditosRouteImport.update({
+  id: '/creditos',
+  path: '/creditos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeirinhasRoute = FeirinhasRouteImport.update({
   id: '/feirinhas',
   path: '/feirinhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapaRoute = MapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FeirinhasIndexRoute = FeirinhasIndexRouteImport.update({
@@ -44,13 +62,19 @@ const FeirinhasIdRoute = FeirinhasIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/creditos': typeof CreditosRoute
   '/feirinhas': typeof FeirinhasRouteWithChildren
+  '/mapa': typeof MapaRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas/': typeof FeirinhasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/creditos': typeof CreditosRoute
+  '/mapa': typeof MapaRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas': typeof FeirinhasIndexRoute
 }
@@ -58,20 +82,41 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/como-funciona': typeof ComoFuncionaRoute
+  '/creditos': typeof CreditosRoute
   '/feirinhas': typeof FeirinhasRouteWithChildren
+  '/mapa': typeof MapaRoute
   '/feirinhas/$id': typeof FeirinhasIdRoute
   '/feirinhas/': typeof FeirinhasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/agenda' | '/feirinhas' | '/feirinhas/$id' | '/feirinhas/'
+  fullPaths:
+    | '/'
+    | '/agenda'
+    | '/como-funciona'
+    | '/creditos'
+    | '/feirinhas'
+    | '/mapa'
+    | '/feirinhas/$id'
+    | '/feirinhas/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/agenda' | '/feirinhas/$id' | '/feirinhas'
+  to:
+    | '/'
+    | '/agenda'
+    | '/como-funciona'
+    | '/creditos'
+    | '/mapa'
+    | '/feirinhas/$id'
+    | '/feirinhas'
   id:
     | '__root__'
     | '/'
     | '/agenda'
+    | '/como-funciona'
+    | '/creditos'
     | '/feirinhas'
+    | '/mapa'
     | '/feirinhas/$id'
     | '/feirinhas/'
   fileRoutesById: FileRoutesById
@@ -79,7 +124,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgendaRoute: typeof AgendaRoute
+  ComoFuncionaRoute: typeof ComoFuncionaRoute
+  CreditosRoute: typeof CreditosRoute
   FeirinhasRoute: typeof FeirinhasRouteWithChildren
+  MapaRoute: typeof MapaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -98,11 +146,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgendaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/como-funciona': {
+      id: '/como-funciona'
+      path: '/como-funciona'
+      fullPath: '/como-funciona'
+      preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creditos': {
+      id: '/creditos'
+      path: '/creditos'
+      fullPath: '/creditos'
+      preLoaderRoute: typeof CreditosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/feirinhas': {
       id: '/feirinhas'
       path: '/feirinhas'
       fullPath: '/feirinhas'
       preLoaderRoute: typeof FeirinhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapa': {
+      id: '/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof MapaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/feirinhas/': {
@@ -139,7 +208,10 @@ const FeirinhasRouteWithChildren = FeirinhasRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgendaRoute: AgendaRoute,
+  ComoFuncionaRoute: ComoFuncionaRoute,
+  CreditosRoute: CreditosRoute,
   FeirinhasRoute: FeirinhasRouteWithChildren,
+  MapaRoute: MapaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
