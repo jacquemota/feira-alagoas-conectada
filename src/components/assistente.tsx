@@ -29,7 +29,10 @@ export function Assistente() {
     } else if (q.includes("patrocin")) {
       setResposta("O destaque patrocinado é uma simulação acadêmica de 7, 15 ou 30 dias, sem cobrança e sem solicitar cartão.");
     } else {
-      const categoria = CATEGORIAS.find((c) => q.includes(c.nome.toLowerCase().split(" ")[0]));
+      const categoria = CATEGORIAS.find((c) => {
+        const [primeiraPalavra] = c.nome.toLowerCase().split(" ");
+        return primeiraPalavra ? q.includes(primeiraPalavra) : false;
+      });
       const local = eventos.find((e) => q.includes(e.municipio.toLowerCase()) || q.includes(e.bairro.toLowerCase()));
       if (categoria) setResposta(`Encontrei ${eventos.filter((e) => e.categoria === categoria.id).length} evento(s) de ${categoria.nome}. Use o link para abrir o catálogo filtrado.`);
       else if (local) setResposta(`Há eventos em ${local.municipio}, incluindo “${local.nome}”. Veja todos no catálogo ou no mapa.`);
